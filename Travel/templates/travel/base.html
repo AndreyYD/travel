@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travel</title>
+    <link rel="stylesheet" href="{% static 'todo/css/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'todo/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'todo/css/bootstrap-utilities.css' %}">
+    <link rel="stylesheet" href="{% static 'todo/css/style.css' %}">
+    <script src="{% static 'todo/js/bootstrap.js' %}"></script>
+</head>
+<body>
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+</body>
+</html>
