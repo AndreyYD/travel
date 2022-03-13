@@ -1,0 +1,22 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+
+<div class="container">
+    <h1>Город</h1>
+    <div class="row">
+        <div class="col-md">
+            <p>Название города: {{ object.name }}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <a href="{% url 'list_cities' %}">
+                <button type="button" class="btn btn-light">Вернуться к списку</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

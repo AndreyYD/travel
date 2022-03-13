@@ -1,3 +1,11 @@
 from django.db import models
 
-# Create your models here.
+class CityModel(models.Model):
+    name = models.CharField(max_length=30, unique=True, verbose_name='City')
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'City'
+        verbose_name_plural = 'Cities'
