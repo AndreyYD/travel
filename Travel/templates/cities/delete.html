@@ -2,19 +2,14 @@
 {% block content %}
 
 <div class="container">
-    <h1>Список городов</h1>
-    {% for cities in cities %}
-    <p>
-        <a href="{% url 'city' pk=cities.pk %}">{{ cities.name }}</a>
-    </p>
-    {% endfor %}
-
+    <h1>Уалить город</h1>
+    <p>{{ object }}</p>
     <div class="row">
         <div class="col-md-4">
             <form caction="" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="Submit">
+                <button type="submit" class="btn btn-primary">Удалить</button>
             </form>
         </div>
     </div>
