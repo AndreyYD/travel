@@ -3,11 +3,51 @@
 
 <div class="container">
     <h1>Список городов</h1>
-    {% for cities in cities %}
-    <p>
-        <a href="{% url 'city' pk=cities.pk %}">{{ cities.name }}</a>
-    </p>
-    {% endfor %}
+    <div class="row">
+        <table class="table table-striped">
+            {% for cities in page_obj %}
+            <tr>
+                <td>
+                    <a href="{% url 'city' pk=cities.pk %}">{{ cities.name }}</a>
+                </td>
+                <td>
+                    <a href="{% url 'update' pk=cities.pk %}">
+                        <button type="submit" class="btn btn-primary">Редактировать</button>
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'delete' pk=cities.pk %}">
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                {% if page_obj.has_previous %}
+                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                {% endif %}
+            </li>
+            {% for page in page_obj.paginator.page_range %}
+                <li class="page-item {% if page == page_obj.number %} active {% endif %}">
+                    <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                </li>
+            {% endfor %}
+            <li class="page-item">
+                {% if page_obj.has_next %}
+                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                {% endif %}
+            </li>
+        </ul>
+    </nav>
 
     <div class="row">
         <div class="col-md-4">
