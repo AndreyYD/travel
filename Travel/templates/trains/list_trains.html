@@ -2,21 +2,38 @@
 {% block content %}
 
 <div class="container">
-    <h1>Список городов</h1>
+    <h1>Список поездов</h1>
     <div class="row">
         <table class="table table-striped">
-            {% for cities in page_obj %}
+            <tr>
+                <th>Номер</th>
+                <th>Город отправления</th>
+                <th>Город прибытия</th>
+                <th>Время в пути</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+            {% for trains in page_obj %}
             <tr>
                 <td>
-                    <a href="{% url 'cities:city' pk=cities.pk %}">{{ cities.name }}</a>
+                    <a href="{% url 'trains:train' pk=trains.pk %}">{{ trains.name }}</a>
                 </td>
                 <td>
-                    <a href="{% url 'cities:update' pk=cities.pk %}">
+                    {{ trains.departure_city }}
+                </td>
+                <td>
+                    {{ trains.arrival_city }}
+                </td>
+                <td>
+                    {{ trains.travel_time }}
+                </td>
+                <td>
+                    <a href="{% url 'trains:update' pk=trains.pk %}">
                         <button type="submit" class="btn btn-primary">Редактировать</button>
                     </a>
                 </td>
                 <td>
-                    <a href="{% url 'cities:delete' pk=cities.pk %}">
+                    <a href="{% url 'trains:delete' pk=trains.pk %}">
                         <button type="submit" class="btn btn-danger">Удалить</button>
                     </a>
                 </td>
@@ -48,16 +65,6 @@
             </li>
         </ul>
     </nav>
-
-    <div class="row">
-        <div class="col-md-4">
-            <form action="{% url 'cities:create' %}" method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-    </div>
 </div>
 
 {% endblock %}

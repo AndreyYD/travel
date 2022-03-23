@@ -1,0 +1,43 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+
+<div class="container">
+    <h1>Город</h1>
+    <div class="row">
+        <div class="col-md">
+            <table class="table table-striped">
+                <tr>
+                    <th>Номер</th>
+                    <th>Город отправления</th>
+                    <th>Город прибытия</th>
+                    <th>Время в пути</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <tr>
+                    <td>
+                        {{ object.name }}
+                    </td>
+                    <td>
+                        {{ object.departure_city }}
+                    </td>
+                    <td>
+                        {{ object.arrival_city }}
+                    </td>
+                    <td>
+                        {{ object.travel_time }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md">
+            <a href="{% url 'trains:list_trains' %}">
+                <button type="button" class="btn btn-light">Вернуться к списку</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

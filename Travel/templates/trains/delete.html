@@ -1,0 +1,18 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+
+<div class="container">
+    <h1>Уалить поезд</h1>
+    <p>{{ object }}</p>
+    <div class="row">
+        <div class="col-md-4">
+            <form caction="" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-primary">Удалить</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
