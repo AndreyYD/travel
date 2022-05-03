@@ -35,19 +35,19 @@ class CityCreateView(SuccessMessageMixin, CreateView):
     model = CityModel
     form_class = CityModelForm
     template_name = 'cities/create.html'
-    success_url = reverse_lazy('list_cities')
+    success_url = reverse_lazy('cities:list_cities')
     success_message = "Город успешно создан"
 
 class CityUpdateView(SuccessMessageMixin, UpdateView):
     model = CityModel
     form_class = CityModelForm
     template_name = 'cities/update.html'
-    success_url = reverse_lazy('list_cities')
+    success_url = reverse_lazy('cities:list_cities')
     success_message = "Город успешно отредактирован"
 
 class CityDeleteView(DeleteView):
     model = CityModel
-    success_url = reverse_lazy('list_cities')
+    success_url = reverse_lazy('cities:list_cities')
 
     def get(self, request, *args, **kwargs):
         messages.success(request, 'Город успешно удален')

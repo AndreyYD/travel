@@ -1,0 +1,7 @@
+{% extends 'travel/base.html' %}
+{% block content %}
+
+{% url 'find_routes' as action %}
+{% include 'travel/forms.html' with button='Найти' action=action %}
+
+{% endblock %}
