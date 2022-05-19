@@ -1,6 +1,22 @@
 {% extends 'travel/base.html' %}
 {% block content %}
 
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            {% if routes %}
+                <h3>Маршрут из г.{{ cities.departure_city}} в г.{{ cities.arrival_city}}</h3>
+                {% for route in routes %}
+                    <p>Время в пути {{route.total_time}}</p>
+                    <p>Поезда:</p>
+                    {% for train in route.trains %}
+                        <p>{{ train }}</p>
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% url 'find_routes' as action %}
 {% include 'travel/forms.html' with button='Найти' action=action %}
 
