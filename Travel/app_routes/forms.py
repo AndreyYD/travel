@@ -2,6 +2,7 @@ from django import forms
 
 from app_cities.models import CityModel
 from .models import RouteModel
+from app_trains.models import TrainModel
 
 
 class RouteForm(forms.Form):
@@ -33,6 +34,34 @@ class RouteForm(forms.Form):
         required=False,
         widget=forms.SelectMultiple(attrs={
             'class': 'form-control js-example-basic-multiple'
+        })
+    )
+
+class RouteModelForm(forms.ModelForm):
+    name = forms.CharField(
+        label='Название иаршрута',
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Введите название города',
+        })
+    )
+    departure_city = forms.ModelChoiceField(
+        queryset=CityModel.objects.all(),
+        widget=forms.HiddenInput(),
+    )
+    arrival_city = forms.ModelChoiceField(
+        queryset=CityModel.objects.all(),
+        widget=forms.HiddenInput(),
+    )
+    travel_time = forms.IntegerField(
+        widget=forms.HiddenInput()
+    )
+
+    trains = forms.ModelMultipleChoiceField(
+        queryset=TrainModel.objects.all(),
+        required=False,
+        widget=forms.SelectMultiple(attrs={
+            'class': 'form-control d-none'
         })
     )
 

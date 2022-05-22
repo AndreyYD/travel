@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import route_view
+from .views import RouteDetailView
 
 app_name = 'app_routes'
 

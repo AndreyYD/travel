@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from app_routes.views import route_view, find_routes
+from app_routes.views import route_view, find_routes, add_route, save_route, RouteListView, RouteDetailView
 from django.urls import include
 from django.conf.urls.static import static
 from django.conf import settings
@@ -26,6 +26,10 @@ urlpatterns = [
     path('cities/', include('app_cities.urls', namespace='cities')),
     path('trains/', include('app_trains.urls', namespace='trains')),
     path('find_routes/', find_routes, name='find_routes'),
+    path('add_route/', add_route, name='add_route'),
+    path('save_route/', save_route, name='save_route'),
+    path('list/', RouteListView.as_view(), name='list'),
+    path('routes/<int:pk>/', RouteDetailView.as_view(), name='route'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
