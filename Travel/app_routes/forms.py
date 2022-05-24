@@ -39,10 +39,10 @@ class RouteForm(forms.Form):
 
 class RouteModelForm(forms.ModelForm):
     name = forms.CharField(
-        label='Название иаршрута',
+        label='Название маршрута',
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Введите название города',
+            'placeholder': 'Введите название маршрута',
         })
     )
     departure_city = forms.ModelChoiceField(

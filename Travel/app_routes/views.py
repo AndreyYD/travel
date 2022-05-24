@@ -1,6 +1,9 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, DeleteView
 
 from .forms import RouteForm, RouteModelForm
 from .models import RouteModel
@@ -81,3 +84,11 @@ class RouteListView(ListView):
 class RouteDetailView(DetailView):
     queryset = RouteModel.objects.all()
     template_name = 'routes/route.html'
+
+class RouteDeleteView(LoginRequiredMixin, DeleteView):
+    model = RouteModel
+    success_url = reverse_lazy('home')
+
+    def get(self, request, *args, **kwargs):
+        messages.success(request, 'Маршрут успешно удален')
+        return self.post(request, *args, **kwargs)
